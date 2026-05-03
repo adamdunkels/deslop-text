@@ -2,7 +2,7 @@
 
 An Agent Skill that detects AI-generated writing patterns and fixes them.
 
-AI text has a recognisable fingerprint: filler phrases, paired adjectives, marketing superlatives, metronomic sentence lengths, uncontracted verbs. Readers spot it instantly. This skill runs 30 checks against any prose and suggests concrete rewrites for every violation it finds.
+AI text has a recognisable fingerprint: filler phrases, paired adjectives, marketing superlatives, metronomic sentence lengths, uncontracted verbs. Readers spot it instantly. This skill runs 32 checks against any prose and suggests concrete rewrites for every violation it finds.
 
 Try it in your browser: https://adamdunkels.github.io/is-it-slop/
 
@@ -27,7 +27,7 @@ The skill activates when you ask your agent to review or deslop text.
 
 ## What it checks
 
-30 warning signs, grouped by severity.
+32 warning signs, grouped by severity.
 
 **High** (instant AI tells):
 - W1 Filler phrases ("it's worth noting", "leverage", "nuanced")
@@ -58,18 +58,20 @@ The skill activates when you ask your agent to review or deslop text.
 - W25 Informal corporate slang
 - W26 Uncontracted forms throughout
 - W30 Heading emoji
+- W32 Internet cliches ("hits different", "rent-free", "chef's kiss")
 
 **Low** (matter in aggregate):
 - W20 The word "very"
 - W27 Typographic/curly quotes
 - W28 Repetitive word use
 - W29 Sentence length uniformity
+- W31 Repeated thematic points
 
 ## How it works
 
 The skill reviews text in two modes:
 
-**Review mode** — reports violations with citations and suggested rewrites, grouped by severity. Ends with a count: "X violations found across Y of 30 checks."
+**Review mode** — reports violations with citations and suggested rewrites, grouped by severity. Ends with a count: "X violations found across Y of 32 checks."
 
 **Fix mode** — applies all rewrites and returns the cleaned text.
 
