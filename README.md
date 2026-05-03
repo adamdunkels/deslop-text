@@ -4,6 +4,8 @@ An Agent Skill that detects AI-generated writing patterns and fixes them.
 
 AI text has a recognisable fingerprint: filler phrases, paired adjectives, marketing superlatives, metronomic sentence lengths, uncontracted verbs. Readers spot it instantly. This skill runs 30 checks against any prose and suggests concrete rewrites for every violation it finds.
 
+Try it in your browser: https://adamdunkels.github.io/is-it-slop/
+
 ## Install
 
 Copy the skill into your project's `.claude/skills/` directory:
