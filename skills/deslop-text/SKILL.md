@@ -15,12 +15,12 @@ You are reviewing written text for AI-generated writing patterns. These are the 
    - **High** — patterns that are instant AI tells (W1 filler phrases, W5 marketing language, W6 generic openings, W9 paired adjectives, W15 excited-to-announce)
    - **Medium** — patterns that weaken the writing even when not obviously AI (W3 em-dashes, W7 passive voice, W8 hedging, W11 mechanical transitions, W26 uncontracted forms)
    - **Low** — statistical patterns that only matter in aggregate (W20 "very", W28 repetitive words, W29 sentence length uniformity)
-6. End with a count: "X violations found across Y of 30 checks."
+6. End with a count: "X violations found across Y of 32 checks."
 7. If the user asks you to fix the text (not just review), apply all rewrites and present the cleaned version.
 
 ---
 
-## The 30 warning signs
+## The 32 warning signs
 
 ### W1 · Filler phrases
 
@@ -37,9 +37,16 @@ Target phrases:
 
 ### W2 · "Not X, it is Y" constructions
 
-Contrastive framing where the negation adds nothing. "This is not about speed, it is about reliability" — just say "This is about reliability."
+Contrastive framing where the negation adds nothing. The positive statement carries the meaning; the negation is just runway.
 
-Look for: "it is not X, it is Y", "this is not about X, it is about Y", "not X — Y", "less about X, more about Y".
+The pattern takes many forms:
+- Single sentence: "This is not about speed, it is about reliability."
+- Split across sentences: "It's not about speed. It's about reliability."
+- Inverted/rhetorical: "Speed? No. Reliability."
+- With contractions: "It's not one big giveaway. It's a pile of small ones."
+- Softer forms: "less about X, more about Y"
+
+Flag any adjacent sentence pair where one negates and the next affirms the same subject, regardless of exact phrasing.
 
 Fix: say what it is directly. Cut the negation.
 
@@ -110,11 +117,15 @@ Fix: pick the stronger adjective. Drop the pairing.
 
 ### W10 · Meta-references
 
-Text that refers to itself.
+Text that narrates its own structure instead of just having structure.
 
-Target phrases: "In this post...", "As we discussed above...", "Let's explore...", "In this article...", "As mentioned earlier...", "Below, we'll cover..."
+Third-person/impersonal forms: "In this post...", "As we discussed above...", "Let's explore...", "In this article...", "As mentioned earlier...", "Below, we'll cover..."
 
-Fix: delete. The reader knows they are reading the post.
+First-person forms: "I grouped them into three tiers based on...", "I've organized these by...", "I read through this list and realized...", "I want to walk you through..."
+
+Both do the same thing: tell the reader about the article's organization rather than letting the organization speak for itself.
+
+Fix: delete. The reader knows they are reading the post. If the structure is clear, you don't need to announce it.
 
 ### W11 · Mechanical transitions
 
@@ -234,9 +245,12 @@ Fix: replace curly quotes with straight quotes.
 
 ### W28 · Repetitive word use
 
-Same distinctive word (5+ characters) repeated 3+ times within a short span (~500 characters). Excludes common stopwords.
+Same distinctive word (5+ characters, excluding stopwords) appearing too often. Check two levels:
 
-Fix: use a synonym or restructure.
+- **Local clustering**: same word 3+ times within a single paragraph or short passage.
+- **Document saturation**: same word appearing more than 8 times per 2000 words, regardless of spacing. A word can pass every local check while still dominating the piece.
+
+Fix: use a synonym, restructure, or cut redundant sentences. For document-level saturation, the fix is often that the text is making the same point repeatedly (see also W31).
 
 ### W29 · Sentence length uniformity
 
@@ -250,6 +264,37 @@ Decorative emoji at the start of markdown headings: "## Getting Started", "### K
 
 Fix: remove the emoji from the heading.
 
+### W31 · Repeated thematic points
+
+The same idea restated in different words at multiple points in the text. AI tends to re-derive its thesis in every section, producing multiple phrasings of one point rather than advancing the argument.
+
+Example — these three sentences from different sections all say the same thing:
+- "Each pattern is individually forgivable. Stacked together, they're a fingerprint."
+- "These don't scream AI on their own... they pile up into a recognizable texture."
+- "Any single instance means nothing. But when you see all of them, something feels off."
+
+Flag when: a thematic point (not just a word) appears in substantially similar form more than once. Pay attention to the "[one/single/individual] is [fine/nothing]. [Together/combined/stacked] they [signal/reveal]" structure, but don't limit detection to that template.
+
+Fix: say it once, in the strongest place. Delete or replace the weaker instances with points that advance the argument.
+
+### W32 · Internet cliches
+
+Phrases that were novel online circa 2015-2022 but have been strip-mined by AI models into cliche. They aren't corporate jargon (W21) or filler (W1) — they're internet-native expressions that AI reaches for as if they're still fresh.
+
+Target phrases:
+- "you can't unsee it/them"
+- "hits different"
+- "rent-free"
+- "chef's kiss"
+- "the quiet part out loud"
+- "I'm here for it"
+- "tell me you X without telling me you X"
+- "let that sink in"
+- "this is the way"
+- "say it louder for the people in the back"
+
+Fix: say what you actually mean. If the phrase is doing real work, replace it with a specific observation. If it's decoration, delete it.
+
 ---
 
 ## Severity classification
@@ -258,10 +303,10 @@ Fix: remove the emoji from the heading.
 W1 (filler phrases), W2 ("not X, it is Y"), W5 (marketing language), W6 (generic openings), W9 (paired adjectives), W15 (excited-to-announce), W16 (whether you're X or Y), W17 (faux-conversational pivots), W21 (corporate cliches), W24 (triple-value lists)
 
 **Medium** (weaken the writing):
-W3 (em-dashes), W4 (rhetorical questions), W7 (passive voice), W8 (hedging), W10 (meta-references), W11 (mechanical transitions), W12 (bold emphasis), W13 (scare quotes), W14 (section-end summaries), W18 (exclamation clusters), W19 (repetitive "You"), W22 (hashtags), W23 (emoji), W25 (corporate slang), W26 (uncontracted forms), W30 (heading emoji)
+W3 (em-dashes), W4 (rhetorical questions), W7 (passive voice), W8 (hedging), W10 (meta-references), W11 (mechanical transitions), W12 (bold emphasis), W13 (scare quotes), W14 (section-end summaries), W18 (exclamation clusters), W19 (repetitive "You"), W22 (hashtags), W23 (emoji), W25 (corporate slang), W26 (uncontracted forms), W30 (heading emoji), W32 (internet cliches)
 
 **Low** (statistical — matter in aggregate):
-W20 ("very"), W27 (typographic quotes), W28 (repetitive words), W29 (sentence length uniformity)
+W20 ("very"), W27 (typographic quotes), W28 (repetitive words), W29 (sentence length uniformity), W31 (repeated thematic points)
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## What it does
 
-deslop-text is an Agent Skill that reviews written text for AI-generated writing patterns and fixes them. It checks 30 specific warning signs — filler phrases, marketing language, passive voice, hedging, paired adjectives, and other patterns that make prose immediately recognisable as machine-generated.
+deslop-text is an Agent Skill that reviews written text for AI-generated writing patterns and fixes them. It checks 32 specific warning signs — filler phrases, marketing language, passive voice, hedging, paired adjectives, repeated thematic points, internet cliches, and other patterns that make prose immediately recognisable as machine-generated.
 
 ## Project structure
 
@@ -41,7 +41,7 @@ description: Review written text for AI-generated writing patterns and fix them.
 ---
 ```
 
-The body contains instructions, the 30 warning signs, severity classification, and rewrite principles.
+The body contains instructions, the 32 warning signs, severity classification, and rewrite principles.
 
 ## Distribution
 
