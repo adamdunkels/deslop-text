@@ -2,9 +2,9 @@
 
 ## Purpose
 
-The skill makes claims about 30 specific writing patterns. The regression tests check whether the skill can back those claims up: given text that's loaded with AI patterns, can it actually fix them without breaking the prose?
+The skill makes claims about 32 specific writing patterns. The regression tests check whether the skill can back those claims up: given text that's loaded with AI patterns, can it actually fix them without breaking the prose?
 
-A traditional test suite won't work here. The skill's output depends on an LLM's judgment, so the test runner is itself a Claude agent. It applies the skill, then turns around and audits the result using the same 30 checks.
+A traditional test suite won't work here. The skill's output depends on an LLM's judgment, so the test runner is itself a Claude agent. It applies the skill, then turns around and audits the result using the same 32 checks.
 
 ## Running the tests
 
@@ -14,21 +14,23 @@ In Claude Code, from the project root:
 /regtest
 ```
 
-This runs the slash command defined in `.claude/commands/regtest.md`. It processes every `.md` file in `tests/regression/corpus/`, writes per-file results to `tests/regression/results/`, and prints a summary table.
+This runs the slash command defined in `.claude/commands/regtest.md`. It finds every `.md` file under `tests/regression/corpus/` (recursively, across subdirectories), spawns a subagent per file, writes per-file results to `tests/regression/results/`, and prints a summary table.
 
 ## How it works
 
-Each corpus file goes through three phases:
+Each corpus file runs in its own subagent, in parallel. This keeps the main agent's context small (it only collects pass/fail verdicts) and cuts token spend compared to processing all files sequentially in one context window.
+
+Each subagent runs three phases:
 
 ### Phase 1: Fix
 
-The agent reads the skill definition and applies it to the corpus text. It rewrites the text with all 30 warning signs addressed. The rewrite must preserve every core fact, keep structural elements (lists, headings), and follow the skill's rewrite principles.
+The agent reads the skill definition and applies it to the corpus text. It rewrites the text with all 32 warning signs addressed. The rewrite must preserve every core fact, keep structural elements (lists, headings), and follow the skill's rewrite principles.
 
 When the original text uses marketing language with no real fact behind it (e.g., "powerful platform" for a fictional product), the agent substitutes a plausible concrete detail rather than leaving the vague word in place.
 
 ### Phase 2: Verify
 
-The agent re-reads the skill and checks its own Phase 1 output against all 30 warning signs, as if reviewing someone else's work. This catches patterns that the fix pass introduced or missed. Each remaining violation is recorded with its W-number, severity, and the specific offending phrase.
+The agent re-reads the skill and checks its own Phase 1 output against all 32 warning signs, as if reviewing someone else's work. This catches patterns that the fix pass introduced or missed. Each remaining violation is recorded with its W-number, severity, and the specific offending phrase.
 
 ### Phase 3: Readability
 
@@ -51,28 +53,30 @@ A text fails when any of those conditions isn't met.
 
 ## Corpus
 
-Test inputs live in `tests/regression/corpus/`. Each file is plain markdown containing prose that exhibits AI writing patterns. The initial set of 11 texts covers blog posts, product pages, newsletters, LinkedIn posts, corporate memos, tutorials, pitch decks, self-help articles, product reviews, landing pages, and meeting summaries.
+Test inputs live in `tests/regression/corpus/`, organized into subdirectories by source (e.g. `corpus/claude/`, `corpus/chatgpt/`). Each file is plain markdown containing prose that exhibits AI writing patterns. Each source currently has 11 texts covering blog posts, product pages, newsletters, LinkedIn posts, corporate memos, tutorials, pitch decks, self-help articles, product reviews, landing pages, and meeting summaries.
 
 ### Adding new texts
 
-Drop a `.md` file in `tests/regression/corpus/`. The runner picks up every `.md` file in that directory automatically. No config file, no manifest, no registration step.
+Drop a `.md` file in any subdirectory of `tests/regression/corpus/`. The runner finds every `.md` file recursively. No config file, no manifest, no registration step.
 
 Naming convention: `{NN}-{short-name}.md` where `NN` is a two-digit number for sort order. The number doesn't affect test behavior; it just keeps the directory listing readable.
+
+To add a new source, create a subdirectory under `corpus/` and put `.md` files in it.
 
 Good corpus additions target gaps: texts that exercise warning signs the current corpus doesn't cover, or genres where the skill struggles.
 
 ## Results
 
-Per-run outputs go to `tests/regression/results/`. Each file contains the fixed text, any remaining violations, the readability verdict, and a pass/fail result. These files are gitignored since they're generated artifacts that vary between runs.
+Per-run outputs go to `tests/regression/results/`, mirroring the corpus subdirectory structure (e.g. `results/claude/`, `results/chatgpt/`). Each file contains the fixed text, any remaining violations, the readability verdict, and a pass/fail result. These files are gitignored since they're generated artifacts that vary between runs.
 
 The summary table printed to the conversation looks like:
 
 ```
-Text                  | High | Med | Low | Readable | Result
---------------------- | ---- | --- | --- | -------- | ------
-01-blog-post          |    0 |   1 |   0 |      yes | PASS
-02-product-page       |    0 |   0 |   2 |      yes | PASS
-07-startup-pitch      |    1 |   0 |   0 |      yes | FAIL
+Text                          | High | Med | Low | Readable | Result
+----------------------------- | ---- | --- | --- | -------- | ------
+claude/01-blog-post           |    0 |   1 |   0 |      yes | PASS
+chatgpt/02-product-page       |    0 |   0 |   2 |      yes | PASS
+chatgpt/07-startup-pitch      |    1 |   0 |   0 |      yes | FAIL
 ```
 
 ## What failures mean
@@ -90,4 +94,4 @@ The test runner is non-deterministic. The same corpus text can produce different
 
 The readability check is also LLM-judged. It catches gross problems (garbled sentences, lost meaning) but won't flag subtle tone shifts or awkward phrasing that a human reader would notice.
 
-There's no per-warning-sign coverage tracking yet. The corpus covers most of the 30 signs, but there's no automated check confirming that every W-number appears in at least one corpus file.
+There's no per-warning-sign coverage tracking yet. The corpus covers most of the 32 signs, but there's no automated check confirming that every W-number appears in at least one corpus file.
