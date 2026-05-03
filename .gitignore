@@ -8,4 +8,4 @@ Thumbs.db
 *~
 
 # Regression test results (generated per run)
-tests/regression/results/*.md
+tests/regression/results/*/*.md
