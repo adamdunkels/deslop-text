@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env*
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Regression test results (generated per run)
+tests/regression/results/*.md

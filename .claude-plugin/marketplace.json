@@ -1,0 +1,22 @@
+{
+  "name": "deslop-text",
+  "owner": {
+    "name": "Adam Dunkels",
+    "email": "adam@dunkels.com"
+  },
+  "metadata": {
+    "description": "Review written text for AI-generated writing patterns and fix them. 30 checks covering filler phrases, marketing language, passive voice, hedging, and other machine-generated tells.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "deslop-text",
+      "description": "Detect and fix AI-generated writing patterns in any prose",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/deslop-text"
+      ]
+    }
+  ]
+}
