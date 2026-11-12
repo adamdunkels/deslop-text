@@ -5,7 +5,7 @@
     "email": "adam@dunkels.com"
   },
   "metadata": {
-    "description": "Review written text for AI-generated writing patterns and fix them. 43 checks covering filler phrases, marketing language, passive voice, hedging, and other machine-generated tells.",
+    "description": "Review written text for AI-generated writing patterns and fix them. 53 checks covering filler phrases, marketing language, passive voice, hedging, and other machine-generated tells.",
     "version": "1.0.0"
   },
   "plugins": [

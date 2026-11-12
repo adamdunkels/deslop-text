@@ -2,7 +2,7 @@
 
 An Agent Skill that detects AI-generated writing patterns and fixes them.
 
-AI text has a recognisable fingerprint: filler phrases, paired adjectives, marketing superlatives, metronomic sentence lengths, uncontracted verbs. Readers spot it instantly. This skill runs 43 checks against any prose and suggests concrete rewrites for every violation it finds.
+AI text has a recognisable fingerprint: filler phrases, paired adjectives, marketing superlatives, metronomic sentence lengths, uncontracted verbs. Readers spot it instantly. This skill runs 53 checks against any prose and suggests concrete rewrites for every violation it finds.
 
 Try it in your browser: https://adamdunkels.github.io/is-it-slop/
 
@@ -27,7 +27,7 @@ The skill activates when you ask your agent to review or deslop text.
 
 ## What it checks
 
-43 warning signs, grouped by severity.
+53 warning signs, grouped by severity.
 
 **High** (instant AI tells):
 - W1 Filler phrases ("it's worth noting", "leverage", "nuanced")
@@ -48,6 +48,10 @@ The skill activates when you ask your agent to review or deslop text.
 - W39 Parallel contrast templates
 - W40 "Just became" transformation crutch
 - W41 Invented day-of-week specificity
+- W44 Claims stated as an absence ("no setup required", "nothing broke")
+- W46 A pointer with nothing to point at ("every item here", "the move")
+- W47 Empty verb in the payoff slot ("what the campaign did")
+- W53 Ending shapes in short pieces
 
 **Medium** (weaken the writing):
 - W3 Em-dash overuse
@@ -70,6 +74,11 @@ The skill activates when you ask your agent to review or deslop text.
 - W38 Authenticity signals ("genuinely", "truly", "the honest answer")
 - W42 Personification of inanimate subjects ("the product owes you")
 - W43 Comma-and clause stitching
+- W45 Hollow "quietly" and "already"
+- W48 One word in two senses within a piece
+- W49 Definitions built from stacked appositives
+- W51 Headings that don't carry the story
+- W52 A negative verdict given a beat of its own
 
 **Low** (matter in aggregate):
 - W20 The word "very"
@@ -77,12 +86,13 @@ The skill activates when you ask your agent to review or deslop text.
 - W28 Repetitive word use
 - W29 Sentence length uniformity
 - W31 Repeated thematic points
+- W50 A range used as a hedge ("three to five days")
 
 ## How it works
 
 The skill reviews text in two modes:
 
-**Review mode** — reports violations with citations and suggested rewrites, grouped by severity. Ends with a count: "X violations found across Y of 43 checks."
+**Review mode** — reports violations with citations and suggested rewrites, grouped by severity. Ends with a count: "X violations found across Y of 53 checks."
 
 **Fix mode** — applies all rewrites and returns the cleaned text.
 
