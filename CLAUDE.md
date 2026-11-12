@@ -4,7 +4,7 @@
 
 An open-source Agent Skill that detects and fixes AI-generated writing patterns. The skill works across any tool that supports the Agent Skills open standard (Claude Code, Cursor, GitHub Copilot, Gemini CLI, and others).
 
-The core artifact is `skills/deslop-text/SKILL.md` — a structured checklist of 30 warning signs that make text immediately recognisable as machine-generated. The skill reviews prose, flags violations by severity, and suggests concrete rewrites.
+The core artifact is `skills/deslop-text/SKILL.md` — a structured checklist of warning signs that make text immediately recognisable as machine-generated. The skill reviews prose, flags violations by severity, and suggests concrete rewrites.
 
 ---
 
@@ -22,7 +22,7 @@ The core artifact is `skills/deslop-text/SKILL.md` — a structured checklist of
 - No exclamation mark clusters. No emoji unless requested.
 - No hedging. Commit to claims or cut them.
 - Use contractions. Write like a person.
-- **Post-draft review is mandatory.** After writing any text a human will read, review against the 30 warning signs in the skill before presenting it.
+- **Post-draft review is mandatory.** After writing any text a human will read, review against the warning signs in the skill before presenting it.
 
 ### Documentation
 

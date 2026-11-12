@@ -2,9 +2,9 @@
 
 ## Purpose
 
-The skill makes claims about 32 specific writing patterns. The regression tests check whether the skill can back those claims up: given text that's loaded with AI patterns, can it actually fix them without breaking the prose?
+The skill makes claims about 43 specific writing patterns. The regression tests check whether the skill can back those claims up: given text that's loaded with AI patterns, can it actually fix them without breaking the prose?
 
-A traditional test suite won't work here. The skill's output depends on an LLM's judgment, so the test runner is itself a Claude agent. It applies the skill, then turns around and audits the result using the same 32 checks.
+A traditional test suite won't work here. The skill's output depends on an LLM's judgment, so the test runner is itself a Claude agent. It applies the skill, then turns around and audits the result using the same 43 checks.
 
 ## Running the tests
 
@@ -24,13 +24,13 @@ Each subagent runs three phases:
 
 ### Phase 1: Fix
 
-The agent reads the skill definition and applies it to the corpus text. It rewrites the text with all 32 warning signs addressed. The rewrite must preserve every core fact, keep structural elements (lists, headings), and follow the skill's rewrite principles.
+The agent reads the skill definition and applies it to the corpus text. It rewrites the text with all 43 warning signs addressed. The rewrite must preserve every core fact, keep structural elements (lists, headings), and follow the skill's rewrite principles.
 
 When the original text uses marketing language with no real fact behind it (e.g., "powerful platform" for a fictional product), the agent substitutes a plausible concrete detail rather than leaving the vague word in place.
 
 ### Phase 2: Verify
 
-The agent re-reads the skill and checks its own Phase 1 output against all 32 warning signs, as if reviewing someone else's work. This catches patterns that the fix pass introduced or missed. Each remaining violation is recorded with its W-number, severity, and the specific offending phrase.
+The agent re-reads the skill and checks its own Phase 1 output against all 43 warning signs, as if reviewing someone else's work. This catches patterns that the fix pass introduced or missed. Each remaining violation is recorded with its W-number, severity, and the specific offending phrase.
 
 ### Phase 3: Readability
 
@@ -94,4 +94,4 @@ The test runner is non-deterministic. The same corpus text can produce different
 
 The readability check is also LLM-judged. It catches gross problems (garbled sentences, lost meaning) but won't flag subtle tone shifts or awkward phrasing that a human reader would notice.
 
-There's no per-warning-sign coverage tracking yet. The corpus covers most of the 32 signs, but there's no automated check confirming that every W-number appears in at least one corpus file.
+There's no per-warning-sign coverage tracking yet. The corpus covers most of the 43 signs, but there's no automated check confirming that every W-number appears in at least one corpus file.
