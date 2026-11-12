@@ -2,7 +2,7 @@
 
 An Agent Skill that detects AI-generated writing patterns and fixes them.
 
-AI text has a recognisable fingerprint: filler phrases, paired adjectives, marketing superlatives, metronomic sentence lengths, uncontracted verbs. Readers spot it instantly. This skill runs 32 checks against any prose and suggests concrete rewrites for every violation it finds.
+AI text has a recognisable fingerprint: filler phrases, paired adjectives, marketing superlatives, metronomic sentence lengths, uncontracted verbs. Readers spot it instantly. This skill runs 43 checks against any prose and suggests concrete rewrites for every violation it finds.
 
 Try it in your browser: https://adamdunkels.github.io/is-it-slop/
 
@@ -27,7 +27,7 @@ The skill activates when you ask your agent to review or deslop text.
 
 ## What it checks
 
-32 warning signs, grouped by severity.
+43 warning signs, grouped by severity.
 
 **High** (instant AI tells):
 - W1 Filler phrases ("it's worth noting", "leverage", "nuanced")
@@ -40,6 +40,14 @@ The skill activates when you ask your agent to review or deslop text.
 - W17 Faux-conversational pivots ("Here's the thing:")
 - W21 Corporate cliches ("move the needle", "synergy")
 - W24 Triple-value lists ("excellence, collaboration, and innovation")
+- W32 "X is a Y problem" categorisation
+- W33 "What X is missing / gets wrong" headings
+- W34 Machinegun sentences (three or more short declaratives in a row)
+- W35 Repetitive sentence openings
+- W37 Negative outcome framing in solution sections
+- W39 Parallel contrast templates
+- W40 "Just became" transformation crutch
+- W41 Invented day-of-week specificity
 
 **Medium** (weaken the writing):
 - W3 Em-dash overuse
@@ -58,7 +66,10 @@ The skill activates when you ask your agent to review or deslop text.
 - W25 Informal corporate slang
 - W26 Uncontracted forms throughout
 - W30 Heading emoji
-- W32 Internet cliches ("hits different", "rent-free", "chef's kiss")
+- W36 Internet cliches ("hits different", "rent-free", "chef's kiss")
+- W38 Authenticity signals ("genuinely", "truly", "the honest answer")
+- W42 Personification of inanimate subjects ("the product owes you")
+- W43 Comma-and clause stitching
 
 **Low** (matter in aggregate):
 - W20 The word "very"
@@ -71,7 +82,7 @@ The skill activates when you ask your agent to review or deslop text.
 
 The skill reviews text in two modes:
 
-**Review mode** — reports violations with citations and suggested rewrites, grouped by severity. Ends with a count: "X violations found across Y of 32 checks."
+**Review mode** — reports violations with citations and suggested rewrites, grouped by severity. Ends with a count: "X violations found across Y of 43 checks."
 
 **Fix mode** — applies all rewrites and returns the cleaned text.
 
