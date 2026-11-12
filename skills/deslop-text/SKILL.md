@@ -10,19 +10,19 @@ You are reviewing written text for AI-generated writing patterns. These are the 
 ## How to run this review
 
 1. Identify the target. If the user specified a file, read it. If they pasted text, use that. If neither, ask.
-2. Run every check in the **43 warning signs** below against the text.
+2. Run every check in the **53 warning signs** below against the text.
 3. For each violation found, cite the specific phrase or sentence and state which warning sign it triggers.
 4. Suggest a concrete rewrite for each violation. Do not just say "remove this" — show what the sentence becomes.
 5. Report findings grouped by severity:
    - **High** — patterns that are instant AI tells (W1 filler phrases, W5 marketing language, W6 generic openings, W9 paired adjectives, W15 excited-to-announce)
    - **Medium** — patterns that weaken the writing even when not obviously AI (W3 em-dashes, W7 passive voice, W8 hedging, W11 mechanical transitions, W26 uncontracted forms)
    - **Low** — statistical patterns that only matter in aggregate (W20 "very", W28 repetitive words, W29 sentence length uniformity)
-6. End with a count: "X violations found across Y of 43 checks."
+6. End with a count: "X violations found across Y of 53 checks."
 7. If the user asks you to fix the text (not just review), apply all rewrites and present the cleaned version.
 
 ---
 
-## The 43 warning signs
+## The 53 warning signs
 
 ### W1 · Filler phrases
 
@@ -54,9 +54,9 @@ Fix: say what it is directly. Cut the negation.
 
 ### W3 · Em-dash overuse
 
-Dashes bolting parenthetical asides onto sentences. In customer-facing copy (landing pages, blog posts), the threshold is zero.
+Dashes bolting parenthetical asides onto sentences. In customer-facing text, the threshold is zero.
 
-Flag if: any em-dash appears in customer-facing copy (landing pages, blog posts). In internal documents, flag if more than one dash-delimited aside per paragraph, or more than 3 em-dashes in the full document.
+Flag if: any em-dash appears in customer-facing text. In internal documents, flag if more than one dash-delimited aside per paragraph, or more than 3 em-dashes in the full document.
 
 Fix: if the aside matters, give it its own sentence or use a semicolon. If not, cut it.
 
@@ -66,7 +66,7 @@ Questions used as section openers or transitions rather than genuine inquiry. "W
 
 Flag if: more than one rhetorical question per 500 words.
 
-Exception: do NOT flag "Question? Answer." pairs where the sentence immediately following the question is a direct answer to it. This is intentional structure (e.g., "How did we solve this? We built a simulator."). Only flag rhetorical questions that are standalone openers or transitions with no direct answer following.
+Exception: do NOT flag "Question? Answer." pairs where the sentence immediately following the question is a direct answer to it. This is intentional structure (e.g., "How did we cut the wait? We opened a second checkout."). Only flag rhetorical questions that are standalone openers or transitions with no direct answer following.
 
 Fix: merge the question and answer into a single declarative sentence, or convert to a "To [verb]..." construction. Never delete just the question and leave the answer orphaned as a non-sequitur statement.
 
@@ -127,7 +127,7 @@ First-person forms: "I grouped them into three tiers based on...", "I've organiz
 
 Both do the same thing: tell the reader about the article's organization rather than letting the organization speak for itself.
 
-Fix: delete. The reader knows they are reading the post. If the structure is clear, you don't need to announce it.
+Fix: delete. The reader knows what they are reading. If the structure is clear, you don't need to announce it.
 
 ### W11 · Mechanical transitions
 
@@ -141,7 +141,7 @@ Fix: connect ideas with a sentence that earns the transition, or just start the 
 
 `<strong>` or `<b>` wrapping a short phrase inside a paragraph to highlight a key selling point: "with **zero configuration**", "in **days rather than months**".
 
-Flag if: 2+ paragraphs use this, or 1 instance appears in the hero subheadline.
+Flag if: 2+ paragraphs use this, or 1 instance appears in a headline or subheadline.
 
 Fix: rewrite so emphasis comes from sentence position. Or give the phrase its own line.
 
@@ -283,15 +283,15 @@ Fix: say it once, in the strongest place. Delete or replace the weaker instances
 
 ### W32 · "X is a Y problem" categorisation
 
-Headings or sentences that categorise instead of saying something concrete: "Slow OTA updates are a dogfooding problem", "Retention is a pricing problem", "Trust is a documentation problem".
+Headings or sentences that categorise instead of saying something concrete: "Slow onboarding is a documentation problem", "Retention is a pricing problem", "Trust is a communication problem".
 
-Fix: state the cause or the consequence directly. "OTA gets fast when developers have to wait for it."
+Fix: state the cause or the consequence directly. "New hires get up to speed in a week once the answers are in the handbook."
 
 ### W33 · "What X is missing / gets wrong / can't tell you" headings
 
-A formula heading that frames the section as a gap in something else: "What the test matrix is missing", "What most teams get wrong", "What CI can't tell you".
+A formula heading that frames the section as a gap in something else: "What the onboarding checklist is missing", "What most teams get wrong", "What a survey can't tell you".
 
-Fix: name the thing directly. "The versions missing from the test matrix", "The controlled environment trap".
+Fix: name the thing directly. "The steps missing from the onboarding checklist", "The polite-answer trap".
 
 ### W34 · Machinegun sentences
 
@@ -325,16 +325,16 @@ Fix: say what you actually mean. If the phrase is doing real work, replace it wi
 
 ### W37 · Negative outcome framing in solution sections
 
-Describing what goes wrong for people who lack the product or approach, rather than what goes right for people who have it. Common in solution, outcome, and conclusion sections of blog posts and landing pages.
+Describing what goes wrong for people who lack the product or approach, rather than what goes right for people who have it. Common in solution, outcome, and conclusion sections of any persuasive text.
 
 Target patterns:
-- "Without [X], [bad thing happens]" — "Without that infrastructure, a hardware revision is a gamble."
+- "Without [X], [bad thing happens]" — "Without a booking system, a busy Saturday is a gamble."
 - "Teams that didn't/don't [X] discover/suffer/face..." — "Teams that didn't invest discover the gap at the worst possible moment."
 - "If you don't have [X], [consequence]" — negative conditional framing
 
 Exception: problem sections are supposed to describe pain. Only flag this pattern in solution, outcome, or conclusion sections where the text should be pointing forward.
 
-Fix: rewrite as what happens WITH the product/approach. "With that infrastructure in place, a hardware revision becomes routine." The reader should see themselves succeeding, not failing.
+Fix: rewrite as what happens WITH the product/approach. "With a booking system in place, a busy Saturday runs like any other day." The reader should see themselves succeeding, not failing.
 
 ### W38 · Authenticity signals
 
@@ -344,7 +344,7 @@ Target words: "honest" (as an intensifier: "the honest answer," "honest starting
 
 Exception: "honest" used to describe an action the reader should take ("be honest about the difference," "report honestly") is fine. The flag is for "honest" modifying a noun to signal the writer's own sincerity.
 
-Flag if: 2+ instances per 2000 words, or any single post uses the word 3+ times.
+Flag if: 2+ instances per 2000 words, or any single piece uses the word 3+ times.
 
 Fix: delete the intensifier. "The honest answer" becomes the answer. "The honest starting point" becomes "the starting point." "Genuinely useful" becomes "useful." If the sentence is weaker without it, the sentence is the problem, not the missing word.
 
@@ -363,66 +363,152 @@ The template is: "[Subject] [verb phrase] [object/clause]. [Different subject] [
 
 Flag if: two adjacent sentences follow the same grammatical template with only the subject/object swapped.
 
-Fix: say it once with both subjects in one sentence, or use a structurally different sentence for the second idea. "Vibe coding works because every iteration is visible. Agentic engineering works because every iteration is verified" becomes "Cross-domain firmware failures are invisible without a test rig, and agentic engineering is how you close the feedback loop that vibe coding's browser can't reach."
+Fix: say it once with both subjects in one sentence, or use a structurally different sentence for the second idea. "The bakery wins because every loaf is fresh. The supermarket wins because every loaf is cheap" becomes "The bakery charges twice the supermarket's price for a loaf baked that morning."
 
 ### W40 · "Just became" transformation crutch
 
-"[Thing] just became [new thing]" used as a heading or topic sentence to announce a transformation without stating the mechanism that caused it. Example: the heading "The flow map just became something the agents work from" asserts the shift instead of naming what made it happen.
+"[Thing] just became [new thing]" used as a heading or topic sentence to announce a transformation without stating the mechanism that caused it. Example: the heading "The waiting list just became the product," which asserted the shift instead of naming what made it happen.
 
 The tell: "just became" does the work a real sentence should do — it lets the writer skip past *why* or *how* and land on the punchy-sounding result. It reads as a scene transition, not a claim.
 
 Flag if: "just became", "just turned into", "just started [verb]ing" opens a heading, topic sentence, or paragraph, and the mechanism isn't in the same sentence.
 
-Exception: a literal, dateable claim where "just became" states an actual fact the post goes on to support (e.g., a thesis title asserting something recently became true, defended across the whole piece) is not the crutch — the crutch is the *unexplained* transformation used as connective tissue. When in doubt, ask whether the sentence would still make its point with "just" deleted and no other change; if so, "just became" was decoration, not a claim.
+Exception: a literal, dateable claim where "just became" states an actual fact the text goes on to support (e.g., a thesis title asserting something recently became true, defended across the whole piece) is not the crutch — the crutch is the *unexplained* transformation used as connective tissue. When in doubt, ask whether the sentence would still make its point with "just" deleted and no other change; if so, "just became" was decoration, not a claim.
 
-Fix: name the actor and the mechanism. "The flow map just became something the agents work from" becomes "A written-down flow states what the product does for the person using it, so an agent can build against it" (say what makes it true, not that it happened).
+Fix: name the actor and the mechanism. "The waiting list just became the product" becomes "Once the waiting list showed each customer their place, people joined it to reserve a spot" (say what makes it true, not that it happened).
 
 ### W41 · Invented day-of-week specificity
 
-Attaching a specific weekday to a narrative example or incident when the day is invented rather than real, to manufacture a false sense of concreteness. "It landed on a wednesday." "The bug shipped on a Tuesday." The day does no work: swap it for any other weekday and the sentence loses nothing, which is the tell that it was never a fact, just texture.
+Attaching a specific weekday to a narrative example or incident when the day is invented rather than real, to manufacture a false sense of concreteness. "It landed on a wednesday." "The order went out on a Tuesday." The day does no work: swap it for any other weekday and the sentence loses nothing, which is the tell that it was never a fact, just texture.
 
-Flag if: a specific day of the week (Monday–Sunday) is attached to an invented example, walkthrough, or incident narrative, and the day is not drawn from an actual recorded date, a real event, or the post's own established release cadence.
+Flag if: a specific day of the week (Monday–Sunday) is attached to an invented example, walkthrough, or incident narrative, and the day is not drawn from an actual recorded date, a real event, or a schedule the text has established.
 
-Exception: a weekday used as an idiom for a recurring point in the work week ("what does a VP of Engineering do on Monday morning?") or as part of a real, named release cadence the post has already established (a team that genuinely ships on a fixed weekly day) is not fabricated specificity — it is doing idiomatic or structural work, not manufacturing a fake fact. The flag is for a day bolted onto a one-off invented anecdote to make it sound like a specific, remembered event.
+Exception: a weekday used as an idiom for a recurring point in the work week ("what does a store manager do on Monday morning?") or as part of a real schedule the text has established (a shop that restocks every Thursday) is not fabricated specificity — it is doing idiomatic or structural work, not manufacturing a fake fact. The flag is for a day bolted onto a one-off invented anecdote to make it sound like a specific, remembered event.
 
-Fix: delete the day, or replace it with detail that actually carries information (how long after the commit, how many changes had landed on top of it, what the release gate was).
+Fix: delete the day, or replace it with detail that actually carries information (how long after the order, how many other orders arrived on top of it, what the cutoff was).
 
 ### W42 · Personification of an abstract or inanimate subject
 
-Dressing up a plain relationship in agency the subject doesn't have. A product, a screen, a system, or a UI element does not hold intent, effort, or obligation — only a person or a team does.
+Dressing up a plain relationship in agency the subject doesn't have. A product, a screen, a document or a building does not hold intent, effort, or obligation — only a person or a team does.
 
-Target patterns: "X earned/earns Y" ("the flows the bulb earned"), "X owes Y" ("what the product owes the person using it"), "X tries to Z" ("the tile tries to draw a brightness"), "X teaches/learns Z" applied to a non-learning system ("teach the room tile what a plug reports"), and similar verbs of intent, effort, obligation, or cognition (wants, decides, knows, cares, remembers) whose subject is a product, screen, flow, or other non-agent.
+Target patterns: "X earned/earns Y" ("the shelf space the brand earned"), "X owes Y" ("what the app owes the person using it"), "X tries to Z" ("the form tries to collect an address"), "X teaches/learns Z" applied to something that can't learn ("teach the spreadsheet what a sale looks like"), and similar verbs of intent, effort, obligation, or cognition (wants, decides, knows, cares, remembers) whose subject is a product, screen, document, or other non-agent.
 
-The tell: these read as natural house vocabulary once one sentence uses one, because the next sentence imitates it — this is why the pattern survives review passes that catch cruder AI-isms. The word compresses an argument about effort or obligation instead of stating the plain mechanism.
+The tell: these read as natural vocabulary once one sentence uses one, because the next sentence imitates it — this is why the pattern survives review passes that catch cruder AI-isms. It is the same reflex as calling software "tireless": the word compresses an argument about effort or obligation instead of stating the plain mechanism.
 
-Flag if: any of the above verbs has a subject that is a product, screen, system, flow, or other thing incapable of intent, effort, obligation, or cognition.
+Flag if: any of the above verbs has a subject that is a product, screen, system, document, or other thing incapable of intent, effort, obligation, or cognition.
 
-Exception: a verb describing literal software or hardware behavior is not personification even though it sounds like an action verb — "the flow runs," "the cloud stores," "the device reports," "the test expects an input" (a test assertion literally expects, in the technical sense) are all fine. "Tries" and "teaches" specifically have large legitimate technical senses ("the client tries three times before failing," "teach the parser a new field format" describing an actual code change) and are not banned words; the flag is only the case where the verb stands in for a single deterministic action and adds implied effort or pedagogy that isn't in the mechanism ("the tile tries to draw a brightness" describes one synchronous draw call, not a retry loop). The test is whether the verb names a mechanism the system executes or an intent/effort/obligation/cognition state it cannot hold. Re-check a borrowed verb against its *new* sentence's subject before reusing it — a word that passed this check for one subject (a test flow) does not automatically pass for a different subject (a rendering element) three sentences later.
+Exception: a verb describing literal software or hardware behavior is not personification even though it sounds like an action verb — "the page loads," "the server stores," "the thermostat reports," "the test expects an input" (a test assertion literally expects, in the technical sense) are all fine. "Tries" and "teaches" specifically have large legitimate technical senses ("the client tries three times before failing," "teach the parser a new field format" describing an actual code change) and are not banned words; the flag is only the case where the verb stands in for a single deterministic action and adds implied effort or pedagogy that isn't in the mechanism ("the form tries to collect an address" describes one field, not a retry loop). The test is whether the verb names a mechanism the system executes or an intent/effort/obligation/cognition state it cannot hold. Re-check a borrowed verb against its *new* sentence's subject before reusing it — a word that passed this check for one subject (a test) does not automatically pass for a different subject (a form field) three sentences later.
 
-Fix: name the literal mechanism, or flip the subject to the person or team who actually holds the intent, effort, or obligation. "The flows the bulb earned" becomes "the flows written for the bulb." "What the product owes the person using it" becomes "what the person using the product should get" or "what the product does for the person using it." "The tile tries to draw a brightness" becomes "the tile draws a brightness" (state the mechanism, drop the implied effort).
+Fix: name the literal mechanism, or flip the subject to the person or team who actually holds the intent, effort, or obligation. "The shelf space the brand earned" becomes "the shelf space the store gave the brand." "What the app owes the person using it" becomes "what the person using the app should get" or "what the app does for the person using it." "The form tries to collect an address" becomes "the form asks for an address" (state the mechanism, drop the implied effort).
 
 ### W43 · Comma-and clause stitching
 
-Two independent clauses joined by ", and" where the second is simply the next fact rather than a consequence, complication, or continuation of the first. "There are a lot of them, and they change every release." Both halves are complete claims with no real relationship between them; the comma-and is there because a full stop felt too abrupt, not because the join means anything.
+Two independent clauses joined by ", and" where the second is simply the next fact rather than a consequence, complication, or continuation of the first. "There are a lot of them, and they change every season." Both halves are complete claims with no real relationship between them; the comma-and is there because a full stop felt too abrupt, not because the join means anything.
 
 Flag if: a sentence has a comma before "and" joining two independent clauses, and each clause reads as a complete, self-sufficient sentence on its own with nothing lost by splitting them.
 
-Exception: a join where the second clause genuinely depends on, resolves, or is caused by the first is fine and often reads better joined — "The bug shipped, and nobody caught it for a week" is one thought, and splitting it flattens the surprise. The test is whether "and" is doing real logical work (consequence, contrast, an accumulating list building toward a beat) or standing in for a period. This is a judgment call: the shape is too common in ordinary English to flag mechanically.
+Exception: a join where the second clause genuinely depends on, resolves, or is caused by the first is fine and often reads better joined — "The shop cut its prices, and the queue doubled by Saturday" is one thought, and splitting it flattens the surprise. The test is whether "and" is doing real logical work (consequence, contrast, an accumulating list building toward a beat) or standing in for a period. This is a judgment call: the shape is too common in ordinary English to flag mechanically.
 
-Fix: split into two sentences ("There are a lot of them. They change every release.") Or cut whichever clause repeats something already said.
+Fix: split into two sentences ("There are a lot of them. They change every season."), which often produces a short landing beat. Or cut whichever clause repeats something already said.
 
 ---
+
+### W44 · Claims stated as an absence
+
+A sentence whose claim is something that doesn't happen, doesn't exist, or isn't needed: "nothing broke", "no setup required", "it never misses a deadline", "without writing a single line of code", "no team owns the gap", "nothing tells you it works". The words to watch are no, not, never, nobody, none, nothing, nowhere, without. An absence puts the thing denied in the reader's head (breakage, setup, a missed deadline) and leaves out what actually happens. In a closing line it reads as reassurance against a threat the text never raised.
+
+Flag if:
+- a sentence's main claim is an absence rather than an event, a result or a capability
+- a closing line or headline states a negation ("still works", "nothing regressed")
+- a short customer-facing piece (a social update, an email, a headline, a call to action) contains any of the words above.
+- negations cluster across a piece. That usually means the **angle** is built out of absence (a gap, a handover, a task nobody wrote down), and rewording sentence by sentence only moves the negation around: "no team owns the gap" becomes "the gap belongs to no team".
+
+Two forms slip past every other check because they fit in one clause:
+- **The negative definition.** "How long the bread stays fresh is not something the baker decides alone" tells the reader what the sentence isn't about and leaves them holding it; "depends on the flour, the oven and the weather together" says it. It also hides in a relative clause that names something by what the reader didn't do: "a supplier you didn't choose" becomes "the supplier the previous owner signed". Strunk's rule 11 puts it from the reader's side: use *not* for denial or antithesis, never for evasion.
+- **The relocated negation.** A draft told to avoid "not X, it's Y" reaches for "rather than", "instead of", "only", "until" or "never" and moves the negation without removing it. "Defaults nobody on the team picked" rewritten as "defaults the team never picked" is the same framing.
+
+Once one instance is flagged, sweep every `not / n't / without / only / until / rather than / instead of` in the piece, including titles, summaries and metadata, which prose checks rarely read. Expect most "rather than / instead of / , not" tails to be cuttable: delete the tail and reread; if the sentence before already said it, the tail goes.
+
+Exception: in long prose, a negation that states a real fact the reader needs ("the contractor has no key to the building", "the meter was not read") stays, and so does a single-sentence contrast that carries meaning. Removing every negation as a mechanical sweep is its own tell. W2 covers the "not X, it's Y" contrast shape, and W37 covers what goes wrong for people without the product.
+
+Fix: say what happens. "Nothing went wrong at the launch" becomes "the doors opened on time and the first hundred guests were seated within the hour". If the whole piece keeps needing negations, pick a different angle, one about what people do, what gets made and what the reader walks away with, before you touch the sentences.
+
+### W45 · Hollow emphasis adverbs: "quietly" and "already"
+
+"Quietly" is the reflex for signalling a change nobody noticed: "the side project quietly becomes the main business", "standards get quietly lowered". "Already" does the same job as emphasis: "a tool the team already owns". Both behave like intensifiers, and in one ten-piece batch all seventeen instances of "already" could be deleted with no loss.
+
+Flag if: deleting the word leaves the sentence's meaning intact.
+
+Exception: literal uses (a silent room), and "already" where the reader's existing investment is the point ("builds on the tools your team already uses").
+
+Fix: cut the word. If the sentence goes flat, it was leaning on the adverb, so give it a concrete claim instead.
+
+### W46 · A pointer with nothing to point at
+
+A word that points at something the reader hasn't reached or was never given. "Here", "these" and "the following" in a lede above a table are the writer's view of the page leaking into the copy ("every item here"). An abstract definite noun with no antecedent does the same: *the move*, *the loop*, *the claim*, *the bar*, *the margin*. The definite article promises a referent the reader can find, and when there isn't one the sentence reads like a fragment of someone else's conversation.
+
+Flag if: a pointer word or a "the + abstract noun" has no referent earlier in the piece.
+
+Fix: state the claim and let the table or list land under it, or name the thing ("opening a second shop" in place of "the move"). A cluster of these usually means other rules are squeezing out the ordinary ways of referring back, so look at the paragraph rather than patching each one.
+
+### W47 · Empty verb in the payoff slot
+
+"The report summarises what the campaign did." Did what? A bare "did", "does", "what happened" or "the results" sits where the concrete thing the reader came for belongs.
+
+Fix: name what is produced or observed: "how many people signed up", "which pages they read before buying".
+
+### W48 · One word in two senses within a piece
+
+A word that is fine in either sense but carries both in the same piece: "once every step lands" (finishes) two paragraphs before "the parcel lands at the depot" (arrives). The reader who just learned one meaning hits the other without warning.
+
+Fix: keep the literal sense and pick a different word for the other ("once every step finishes").
+
+### W49 · Definition built from stacked appositives
+
+"A starter is a culture, the mix of wild yeast and bacteria that raises the dough, with flour and water fed to it daily." One term is defined with another term, which is glossed in an appositive, with the rest hung on a trailing "with" clause, so the reader holds three nouns before anything happens.
+
+Fix: describe the physical thing first and give the term last: "Flour and water, fed daily, grow the wild yeast and bacteria that raise the dough. Bakers call the jar a starter."
+
+### W50 · A range used as a hedge
+
+"Three to five days of work." The spread shows the writer covering themselves, and the reader was never going to argue about which end it lands on.
+
+Fix: use the plain word ("days of work"). Keep a single figure that carries the claim.
+
+### W51 · Headings that don't carry the story
+
+Three heading faults:
+- **A weak verb in the title** is usually a decision nobody made. "Bringing the menu to a new city" describes a direction of travel; "Opening the second restaurant" names the move. Ask what the company would say it is doing.
+- **Passive in a heading.** A heading has room for one clause, and the reader wants to know who does what: "How does the menu get handed to the new chef?" deletes the actor.
+- **Headings that don't read as a standalone story.** Readers scan headings before the prose, so a heading naming something the title and earlier headings never set up sends them hunting.
+
+Fix: read the title and headings alone, in order, and rewrite any that don't follow.
+
+### W52 · A negative verdict given a beat of its own
+
+The short landing beat (a one- or two-sentence paragraph) is for a payoff, a surprising number or a wry aside. Giving a bare negative claim that treatment makes it stand out far more than its weight: "Every part is working. The house is still cold." in its own paragraph.
+
+Fix: keep the fact, and fold it into the paragraph that explains it.
+
+### W53 · Ending shapes in short pieces
+
+A short piece (a social update, a pull quote, a section close) ends on one sentence that adds a fact. Two-sentence endings turn into W39's balanced pair almost every time. Three companion shapes:
+- **The rhetorical triple.** Three clauses sharing a verb ("sales sold, marketing marketed, support supported") is rhythm standing in for information. A list of three different concrete things is fine.
+- **The list that escalates into a wry final item** ("two forms, a phone call, and somebody's afternoon").
+- **The closing clause that exists for cadence** ("on a road most drivers never take").
+
+Fix: end on the fact. "And it applies to the weekend shift too" and "Small habits compound" are endings that work: one sentence each, both adding something.
 
 ## Severity classification
 
 **High** (instant AI tells — fix these first):
-W1 (filler phrases), W2 ("not X, it is Y"), W5 (marketing language), W6 (generic openings), W9 (paired adjectives), W15 (excited-to-announce), W16 (whether you're X or Y), W17 (faux-conversational pivots), W21 (corporate cliches), W24 (triple-value lists), W32 ("X is a Y problem"), W33 ("What X is missing" headings), W34 (machinegun sentences), W35 (repetitive sentence openings), W37 (negative outcome framing), W39 (parallel contrast templates), W40 ("just became" transformation crutch), W41 (invented day-of-week specificity)
+W1 (filler phrases), W2 ("not X, it is Y"), W5 (marketing language), W6 (generic openings), W9 (paired adjectives), W15 (excited-to-announce), W16 (whether you're X or Y), W17 (faux-conversational pivots), W21 (corporate cliches), W24 (triple-value lists), W32 ("X is a Y problem"), W33 ("What X is missing" headings), W34 (machinegun sentences), W35 (repetitive sentence openings), W37 (negative outcome framing), W39 (parallel contrast templates), W40 ("just became" transformation crutch), W41 (invented day-of-week specificity), W44 (claims stated as an absence), W46 (a pointer with nothing to point at), W47 (empty verb in the payoff slot), W53 (ending shapes in short pieces)
 
 **Medium** (weaken the writing):
-W3 (em-dashes), W4 (rhetorical questions), W7 (passive voice), W8 (hedging), W10 (meta-references), W11 (mechanical transitions), W12 (bold emphasis), W13 (scare quotes), W14 (section-end summaries), W18 (exclamation clusters), W19 (repetitive "You"), W22 (hashtags), W23 (emoji), W25 (corporate slang), W26 (uncontracted forms), W30 (heading emoji), W36 (internet clichés), W38 (authenticity signals), W42 (personification of an abstract or inanimate subject), W43 (comma-and clause stitching)
+W3 (em-dashes), W4 (rhetorical questions), W7 (passive voice), W8 (hedging), W10 (meta-references), W11 (mechanical transitions), W12 (bold emphasis), W13 (scare quotes), W14 (section-end summaries), W18 (exclamation clusters), W19 (repetitive "You"), W22 (hashtags), W23 (emoji), W25 (corporate slang), W26 (uncontracted forms), W30 (heading emoji), W36 (internet clichés), W38 (authenticity signals), W42 (personification of an abstract or inanimate subject), W43 (comma-and clause stitching), W45 ("quietly" and "already"), W48 (one word in two senses), W49 (stacked-appositive definitions), W51 (headings), W52 (negative verdict as a beat)
 
 **Low** (statistical — matter in aggregate):
-W20 ("very"), W27 (typographic quotes), W28 (repetitive words), W29 (sentence length uniformity), W31 (repeated thematic points)
+W20 ("very"), W27 (typographic quotes), W28 (repetitive words), W29 (sentence length uniformity), W31 (repeated thematic points), W50 (a range as a hedge)
 
 ---
 
@@ -432,4 +518,7 @@ W20 ("very"), W27 (typographic quotes), W28 (repetitive words), W29 (sentence le
 - When fixing W5 (marketing language), the replacement must be specific and factual. "Powerful" cannot just become "strong" — it must become a concrete claim.
 - When fixing W2 ("not X, it is Y"), keep the Y. The positive statement is almost always the one that matters.
 - When multiple violations overlap in one sentence, rewrite the whole sentence once rather than fixing each pattern individually.
+- **A fix is where the next defect gets written.** The nearest construction that clears the rule is rarely the true one: a flagged equative became `, and` stitching, a flagged negation became "rather than", a flagged "nobody" became "never". Before replacing a flagged sentence, ask what it was trying to do (carry a referent, draw a boundary, answer a question) and replace that function. After the fix, reread the whole sentence cold against every check, not just the flagged word, and check the claim against the facts it rests on.
+- **Don't manufacture synonyms to avoid repetition.** One ordinary act, sending an invoice, came out of an anti-repetition sweep as *fire off an invoice*, *push a bill out to* and *kick off billing for*. The plain verb repeated is better than contrived variety.
+- **A repetition that carries compounding is content.** "Better and better" says the gains stack; keep it. Treat doubling as an intensifier only where nothing accumulates.
 - A clean text is not a bland text. The goal is writing with a specific voice and specific claims, not writing with all personality removed.
